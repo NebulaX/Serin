@@ -55,6 +55,13 @@ if eventHappened == 1 and reply:
 				toSendFile = open(toSend, 'rb')
 				lib.sendFile(conn, toSendFile)
 				break
+		print '-------------------------------'
+		print '||||||    ||||   |\\  || ||||||'
+		print '||   ||  ||  ||  ||\\ || ||    '
+		print '                          ||>  '
+		print '||   ||  ||  ||  || \\|| ||    '
+		print '||||||    ||||   ||  \|| ||||||'
+		print '-------------------------------'
 	
 	# I m reciever and m asking sender for file
 	else:
@@ -73,3 +80,10 @@ if eventHappened == 1 and reply:
 		fil.close()
 		print 'File ' + fileName + ' recieved.'
 		sockToFS.close()
+		print '-------------------------------'
+		print '||||||    ||||   |\\  || ||||||'
+		print '||   ||  ||  ||  ||\\ || ||    '
+		print '                          ||>  '
+		print '||   ||  ||  ||  || \\|| ||    '
+		print '||||||    ||||   ||  \|| ||||||'
+		print '-------------------------------'
