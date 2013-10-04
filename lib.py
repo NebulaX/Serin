@@ -1,5 +1,6 @@
 import socket
 import sys
+from os.path import basename
 
 # To create a connection to a socket server
 def createConnTo(host, port):
@@ -19,7 +20,7 @@ def sendFile(sock, fil):
 			sock.sendall(data)
 			data = fil.read(1024)
 	finally:
-		print 'File Sent'
+		print 'File ' + basename(fil) + ' Sent'
 		fil.close()
 
 # To send a message to a socket server

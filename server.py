@@ -6,10 +6,12 @@ import lib
 #--------------------------
 HOST = ''
 PORT = 444
+print '...................................'
 print '. : S E R I N : . : S E R V E R : .'
+print '...................................'
 
 serv = lib.createListenerHere(HOST, PORT)
-serv.listen(1) # One Request to avoid mishappens
+serv.listen(10)
 print 'Socket Listening'
 #--------------------------
 
@@ -24,16 +26,26 @@ while True:
 	print 'Connected to ' + adr[0] + ':' + str(adr[1])
 	data = conn.recv(1024)
 	if data != '':
-		# If the client is the sender
-		if filename == '':
-			conn.sendall('ok') # Informing client that its file is noted for sending
-			filename = data
-			sender = adr[0]
-		# If the client is the reciever
+		# The client asks for state
+		if data == 'status_of_server':
+			print 'Client asked for state of server.'
+			if filename == '':
+				# The client is sender and is requested to give the file name.
+				conn.sendall('send_file')
+				print 'Asked client for file'
+			else:
+				# The client is reciever. File name and sender ip is sent to it.
+				print 'Sent client the file details'
+				conn.sendall(filename + ',' + sender)
+				filename = ''
+				sender = ''
 		else:
-			conn.sendall(filename + ',' + sender) # Sending the sender and file details to reciever
-			filename = ''
-			sender = ''
+			# The sender gives the file name.
+			print 'Client sent the file name : ' + data
+			if filename == '':
+				conn.sendall('ok') # Informing sender that the file is noted for sending.
+				filename = data
+				sender = adr[0]
 
 #--------------------------
 
