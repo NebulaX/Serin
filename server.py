@@ -1,3 +1,6 @@
+# The Server code for Serin
+# Start at a terminal and point other nodes (serin.py) to this
+
 import socket
 import sys
 import lib
@@ -6,14 +9,7 @@ import lib
 #--------------------------
 HOST = ''
 PORT = 444
-print '--------------------------------------------------'
-print ' ________    ________    ______     _    __     _ '
-print '|  ______|  |  ______|  |  __  |   | |  |  \   | |'
-print '| |______   | |___      | |__| |   | |  |   \  | |'
-print '|______  |  |  ___|     |  __ |    | |  | |\ \ | |'
-print ' ______| |  | |______   | |  \ \   | |  | | \ \| |'
-print '|________|  |________|  |_|   \_\  |_|  |_|  \___|'
-print '--------------------------------------------------'
+lib.printSerin()
 
 serv = lib.createListenerHere(HOST, PORT)
 serv.listen(10)

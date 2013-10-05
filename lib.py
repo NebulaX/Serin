@@ -1,6 +1,29 @@
+# Contains all the functions excluding the main image processing part (which is in serin.py)
+
 import socket
 import sys
 from os.path import basename
+import Tkinter, tkFileDialog
+
+
+def printDone():
+	print '-------------------------------'
+	print '||||||    ||||   |\\  || ||||||'
+	print '||   ||  ||  ||  ||\\ || ||    '
+	print '                          ||>  '
+	print '||   ||  ||  ||  || \\|| ||    '
+	print '||||||    ||||   ||  \|| ||||||'
+	print '-------------------------------'
+
+def printSerin():
+	print '--------------------------------------------------'
+	print ' ________    ________    ______     _    __     _ '
+	print '|  ______|  |  ______|  |  __  |   | |  |  \   | |'
+	print '| |______   | |___      | |__| |   | |  |   \  | |'
+	print '|______  |  |  ___|     |  __ |    | |  | |\ \ | |'
+	print ' ______| |  | |______   | |  \ \   | |  | | \ \| |'
+	print '|________|  |________|  |_|   \_\  |_|  |_|  \___|'
+	print '--------------------------------------------------'
 
 # To create a connection to a socket server
 def createConnTo(host, port):
@@ -32,7 +55,7 @@ def sendMsg(sock, msg):
 		sys.exit()
 	print 'Message Sent'
 
-# To create a socket listener here
+# To create a socket server here
 def createListenerHere(host, port):
 	s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	try:
@@ -41,3 +64,65 @@ def createListenerHere(host, port):
 		print 'Bind Failed. Errr Code : ' + str(msg[0]) + ' Message : ' + str(msg[1])
 		sys.exit()
 	return s
+
+# The main action function. Called when event happens.
+def act(serverip, imsender = 0):
+	conSock = lib.createConnTo(serverip, 444) 
+	print 'Connected to Server'
+
+	# Asking for server status
+	lib.sendMsg(conSock, 'status_of_server')
+	print 'Asking status of server'
+	reply = conSock.recv(1024)
+	conSock.close()
+	if reply == 'send_file':
+		print 'Ok, now I am sender'
+		# Choosing file
+		root = Tkinter.Tk()
+		root.withdraw()
+		toSend = tkFileDialog.askopenfilename()
+		toSendName = basename(toSend)
+		print 'You have selected ' + toSendName
+		conSock = lib.createConnTo(server, 444)
+		# Sending Filename to server
+		lib.sendMsg(conSock, toSendName)
+		reply = conSock.recv(1024)
+		if reply == 'ok':
+			print 'Sent filename to server'
+			imsender = 1
+		conSock.close()
+	if reply:
+		# I m sender and i m broadcasting the file for reception
+		if imsender == 1:
+			filesender = lib.createListenerHere('', 5555)
+			filesender.listen(1)
+			print 'Listening for file request'
+			while True:
+				conn, adr = filesender.accept()
+				print 'Connected to ' + adr[0] + ':' + str(adr[1])
+				req = conn.recv(1024)
+				if req == 'gimme':
+					print 'Connection asked for file, sending now.'
+					toSendFile = open(toSend, 'rb')
+					lib.sendFile(conn, toSendFile)
+					break
+			printDone()
+		
+		# I m reciever and m asking sender for file
+		else:
+			print 'I m reciever, got file name and sender ip'
+			replies = reply.split(',')
+			fileName = replies[0]
+			sender = replies[1]
+			sockToFS = lib.createConnTo(sender, 5555)
+			fil = open(fileName, 'wb')
+			print 'Requesting sender for file'
+			lib.sendMsg(sockToFS, 'gimme')
+			response = sockToFS.recv(1024)
+			while response != '':
+				fil.write(response)
+				response = sockToFS.recv(1024)
+			fil.close()
+			print 'File ' + fileName + ' recieved.'
+			sockToFS.close()
+			printDone()
