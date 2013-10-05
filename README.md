@@ -1,6 +1,6 @@
 Serin
 =====
-Move files with an air swipe
+Transfer files with an air swipe
 ----------------------------
 
 Transfers files from a PC to another when hand is moved from first PC to another.
