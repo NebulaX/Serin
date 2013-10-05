@@ -83,7 +83,7 @@ def act(serverip, imsender = 0):
 		toSend = tkFileDialog.askopenfilename()
 		toSendName = basename(toSend)
 		print 'You have selected ' + toSendName
-		conSock = createConnTo(server, 444)
+		conSock = createConnTo(serverip, 444)
 		# Sending Filename to server
 		sendMsg(conSock, toSendName)
 		reply = conSock.recv(1024)
