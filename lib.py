@@ -108,9 +108,9 @@ def act(serverip, imsender = 0):
 					break
 			printDone()
 		
-		# I m reciever and m asking sender for file
+		# I m receiver and m asking sender for file
 		else:
-			print 'I m reciever, got file name and sender ip'
+			print 'I m receiver, got file name and sender ip'
 			replies = reply.split(',')
 			fileName = replies[0]
 			sender = replies[1]
@@ -123,6 +123,6 @@ def act(serverip, imsender = 0):
 				fil.write(response)
 				response = sockToFS.recv(1024)
 			fil.close()
-			print 'File ' + fileName + ' recieved.'
+			print 'File ' + fileName + ' received.'
 			sockToFS.close()
 			printDone()

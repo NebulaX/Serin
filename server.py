@@ -2,7 +2,6 @@
 # Start at a terminal and point other nodes (serin.py) to this
 
 import socket
-import sys
 import lib
 
 # Opening Socket
@@ -35,7 +34,7 @@ while True:
 				conn.sendall('send_file')
 				print 'Asked client for file'
 			else:
-				# The client is reciever. File name and sender ip is sent to it.
+				# The client is receiver. File name and sender ip is sent to it.
 				print 'Sent client the file details'
 				conn.sendall(filename + ',' + sender)
 				filename = ''
