@@ -8,8 +8,8 @@ Works on computer vision using webcams networking.
 
 ###Dependencies
 
-* [Python 2.7.*](python.org)
-* [Numpy](numpy.org)
+* [Python 2.7.*](http://www.python.org)
+* [Numpy](http://www.numpy.org)
 * **OpenCV** Python : See setup instructions [here](https://opencv-python-tutroals.readthedocs.org/en/latest/py_tutorials/py_setup/py_table_of_contents_setup/py_table_of_contents_setup.html#table-of-content-setup).
 
 ###Setting up
@@ -34,7 +34,7 @@ Works on computer vision using webcams networking.
 * Morphological transformations enhances the chances of detection of hand as compared to face.
 * Contours are searched and a contour with a minimum threshold area is worked on. The centroid of it gives the position of hand, which then is tracked.
 
-#####Made possible using [OpenCV](opencv.org)
+#####Made possible using [OpenCV](http://www.opencv.org)
 
 ###License
 
