@@ -10,7 +10,7 @@ def printDone():
 	print '-------------------------------'
 	print '||||||    ||||   |\\  || ||||||'
 	print '||   ||  ||  ||  ||\\ || ||    '
-	print '                          ||>  '
+	print '                         ||>  '
 	print '||   ||  ||  ||  || \\|| ||    '
 	print '||||||    ||||   ||  \|| ||||||'
 	print '-------------------------------'
@@ -110,7 +110,8 @@ def act(serverip, imsender = 0):
 		
 		# I m receiver and m asking sender for file
 		else:
-			print 'I m receiver, got file name and sender ip'
+			#file name and sender ip has been recieved
+			print 'Ready to recieve file'
 			replies = reply.split(',')
 			fileName = replies[0]
 			sender = replies[1]
@@ -119,6 +120,7 @@ def act(serverip, imsender = 0):
 			print 'Requesting sender for file'
 			sendMsg(sockToFS, 'gimme')
 			response = sockToFS.recv(1024)
+			print ' Recieving file '
 			while response != '':
 				fil.write(response)
 				response = sockToFS.recv(1024)
