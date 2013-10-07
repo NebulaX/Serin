@@ -8,11 +8,11 @@ import Tkinter, tkFileDialog
 
 def printDone():
 	print '-------------------------------'
-	print '||||||    ||||   |\\  || ||||||'
-	print '||   ||  ||  ||  ||\\ || ||    '
+	print '||||||    ||||   |\\   || ||||||'
+	print '||   ||  ||  ||  ||\\  || ||    '
 	print '||   ||  ||  ||  || \ || ||>  '
-	print '||   ||  ||  ||  || \\|| ||    '
-	print '||||||    ||||   ||  \|| ||||||'
+	print '||   ||  ||  ||  ||  \\|| ||    '
+	print '||||||    ||||   ||   || ||||||'
 	print '-------------------------------'
 
 def printSerin():
@@ -43,7 +43,6 @@ def sendFile(sock, fil):
 			sock.sendall(data)
 			data = fil.read(1024)
 	finally:
-		print 'File ' + basename(fil) + ' Sent'
 		fil.close()
 
 # To send a message to a socket server
