@@ -5,7 +5,10 @@ import lib
 import cv2
 import numpy as np
 
-server = '127.0.0.1' # Point it to server
+
+with open(config) as cf
+server = cf.readlines() # Point it to server
+cf.close()
 
 lib.printSerin()
 
