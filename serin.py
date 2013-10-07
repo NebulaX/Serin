@@ -6,8 +6,8 @@ import cv2
 import numpy as np
 
 
-with open(config) as cf
-server = cf.readlines() # Point it to server
+cf = open('config') 
+server = cf.read() # Point it to server
 cf.close()
 
 lib.printSerin()
