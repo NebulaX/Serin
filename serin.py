@@ -4,13 +4,35 @@ import socket
 import lib
 import cv2
 import numpy as np
-
-
-cf = open('config') 
-server = cf.read() # Point it to server
-cf.close()
+from Tkinter import *
 
 lib.printSerin()
+
+def callback():
+	global server
+	global E1
+	global top	
+	server = E1.get()
+	if server == '':
+		server = '127.0.0.1'
+	top.destroy()
+
+
+def server_prompt():
+	global top
+	global E1
+	top = Tk()
+	top.title("server address")
+	L1 = Label(top, text="Server Address")
+	L1.grid(row=0, column=0)
+	E1 = Entry(top, bd = 5)
+	E1.grid(row=0, column=1)
+	E1.focus_set()
+	MyButton1 = Button(top, text="Submit", width=10, command=callback)
+	MyButton1.grid(row=1, column=1)
+
+	top.mainloop()
+
 
 def movementEvent():
 	vc = cv2.VideoCapture(0)
@@ -76,7 +98,8 @@ def movementEvent():
 
 # Program Flow here
 #--------------------------
-eventHappened = 0 # Set it to 1 when event happens
+server_prompt()     #prompt for server ip-address
+eventHappened = 0   # Set it to 1 when event happens
 
 while True:
 	eventHappened = movementEvent()
