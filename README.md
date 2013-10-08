@@ -16,9 +16,9 @@ Works on computer vision using webcams networking.
 
 * **Make sure the computers are connected to a network**
 * Start the `server.py` script at any one of the networked PC
-* Change the value of `server` variable in `serin.py` so that it **points to the ip address of server**.
 * **OPTIONAL** : *Tune the minimum and maximum HSV values in `serin.py` to filter out skin color. Use the included `hsv_filter.py`*
 * Start `serin.py`
+* Fill in your server's ip in the GUI window that pops up (for localhost leave it blank or fill 127.0.0.1) and submit
 
 ###Using
 
