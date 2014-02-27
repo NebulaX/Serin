@@ -2,9 +2,15 @@
 
 import cv2
 import numpy as np
+import hsvData
 
 def nothing(x):
 	pass
+
+def hsvWrite():
+	file_data = open("hsvData.py", "w")
+	file_data.write("hmin = " + str(hmin) + "\nhmax = " + str(hmax) + "\nsmin = " + str(smin) + "\nsmax = " + str(smax) + "\nvmin = " + str(vmin) + "\nvmax = " + str(vmax))
+	file_data.close()
 
 # Create a black image, a window
 cv2.namedWindow('image')
@@ -42,6 +48,7 @@ while ret:
 
 	key = cv2.waitKey(20)
 	if key == 27:
+		hsvWrite()
 		break
 
 cv2.destroyAllWindows()

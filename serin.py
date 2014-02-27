@@ -5,6 +5,7 @@ import lib
 import cv2
 import numpy as np
 from Tkinter import *
+import hsvData
 
 lib.printSerin()
 
@@ -46,12 +47,12 @@ def movementEvent():
 		hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
 		# Threshold Values. Use the hsv_filter.py to tune
-		hmin = 0
-		hmax = 180
-		smin = 25
-		smax = 255
-		vmin = 15
-		vmax = 127
+		hmin = hsvData.hmin
+		hmax = hsvData.hmax
+		smin = hsvData.smin
+		smax = hsvData.smax
+		vmin = hsvData.vmin
+		vmax = hsvData.vmax
 		min = np.array([hmin, smin, vmin], np.uint8)
 		max = np.array([hmax, smax, vmax], np.uint8)
 
