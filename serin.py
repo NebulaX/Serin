@@ -47,11 +47,11 @@ def movementEvent():
 
 		# Threshold Values. Use the hsv_filter.py to tune
 		hmin = 0
-		hmax = 15
-		smin = 33
-		smax = 201
-		vmin = 79
-		vmax = 255
+		hmax = 180
+		smin = 25
+		smax = 255
+		vmin = 15
+		vmax = 127
 		min = np.array([hmin, smin, vmin], np.uint8)
 		max = np.array([hmax, smax, vmax], np.uint8)
 
