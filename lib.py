@@ -66,7 +66,7 @@ def createListenerHere(host, port):
 
 # The main action function. Called when event happens.
 def act(serverip, imsender = 0):
-	conSock = createConnTo(serverip, 444) 
+	conSock = createConnTo(serverip, 4444)
 	print 'Connected to Server'
 
 	# Asking for server status
@@ -82,7 +82,7 @@ def act(serverip, imsender = 0):
 		toSend = tkFileDialog.askopenfilename()
 		toSendName = basename(toSend)
 		print 'You have selected ' + toSendName
-		conSock = createConnTo(serverip, 444)
+		conSock = createConnTo(serverip, 4444)
 		# Sending Filename to server
 		sendMsg(conSock, toSendName)
 		reply = conSock.recv(1024)

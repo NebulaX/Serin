@@ -7,7 +7,7 @@ import lib
 # Opening Socket
 #--------------------------
 HOST = ''
-PORT = 444
+PORT = 4444
 lib.printSerin()
 
 serv = lib.createListenerHere(HOST, PORT)
